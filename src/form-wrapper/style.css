@@ -1,0 +1,54 @@
+.form-wrapper{
+    width: 1000px;
+    height: 700px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+aside{
+    width: 350px;
+    height: 100%;
+    background: url('../assets/background.png');
+    background-size: 350px 100%;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding: 4rem 1rem;
+    border-radius: 10px;
+}
+
+.step{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    color: white;
+}
+
+.step.active .index{
+    background-color: orange;
+    background-color: skyblue;
+}
+
+.step .index{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color:azure;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.step p{
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.step h3{
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}

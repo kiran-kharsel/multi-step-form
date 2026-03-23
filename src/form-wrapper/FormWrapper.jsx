@@ -3,13 +3,13 @@ import './style.css'
 
 function FormWrapper() {
   return (
-    <div>
+    <div className='form-wrapper'>
       <aside>
-        <div>
-          <div className="index active">1</div>
+        <div className='step active'>
+          <div className="index">1</div>
           <div className="heading">
             <p>STEP 1</p>
-            <p>your info</p>
+            <h3>your info</h3>
           </div>
         </div>
       </aside>
