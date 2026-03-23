@@ -4,6 +4,7 @@
     background-color: white;
     border-radius: 10px;
     padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 aside{
@@ -15,40 +16,9 @@ aside{
     box-sizing: border-box;
     padding: 4rem 1rem;
     border-radius: 10px;
-}
-
-.step{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    color: white;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
 }
 
-.step.active .index{
-    background-color: orange;
-    background-color: skyblue;
-}
-
-.step .index{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color:azure;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color:white;
-    font-size: 1.2rem;
-    font-weight: 500;
-}
-
-.step p{
-    font-size: 1rem;
-    text-transform: uppercase;
-}
-
-.step h3{
-    font-size: 1.2rem;
-    text-transform: uppercase;
-}
