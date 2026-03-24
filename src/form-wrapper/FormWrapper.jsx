@@ -53,7 +53,7 @@ function FormWrapper() {
 
   const CurrentComponent = Steps[currentStep]
 
-  const submitBtnText = FINAL_STEP === currentStep ? 'confirm' : 'next step';
+  const submitBtnText = FINAL_STEP === currentStep ? 'Confirm' : 'Next Step';
 
 
   function handleNextStep(){
