@@ -38,6 +38,9 @@ const Pages = {
   step4: 4,
 }
 
+// final steps
+const FINAL_STEP = Pages.step4
+
 function FormWrapper() {
   const [currentStep, setCurrentStep] = useState(Pages.step1);
 
@@ -49,6 +52,8 @@ function FormWrapper() {
   }
 
   const CurrentComponent = Steps[currentStep]
+
+  const submitBtnText = FINAL_STEP === currentStep ? 'confirm' : 'next step'
 
   
   return (
@@ -67,9 +72,10 @@ function FormWrapper() {
         <div className="current-step">
           <CurrentComponent/>
         </div>
+
         <div className="buttons">
           <button className='go-back'>go back</button>
-          <button className='next-step'>next step</button>
+          <button className='next-step'>{submitBtnText}</button>
         </div>
       </main>
     </div>
