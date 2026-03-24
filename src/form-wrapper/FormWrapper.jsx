@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style.css'
 import Step from './step'
 
@@ -24,6 +24,9 @@ const STEPS = [
 ]
 
 function FormWrapper() {
+  const [isActive, setIsActive] = useState(false);
+
+  
   return (
     <div className='form-wrapper'>
       <aside>
@@ -38,7 +41,10 @@ function FormWrapper() {
       </aside>
       <main>
         <div className="current-step"></div>
-        <div className="buttons"></div>
+        <div className="buttons">
+          <button className='go-back'>go back</button>
+          <button className='next-step'>next step</button>
+        </div>
       </main>
     </div>
   )
