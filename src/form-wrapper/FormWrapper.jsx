@@ -81,7 +81,10 @@ function FormWrapper() {
           STEPS.map((step) => {
             const {index, heading} = step;
             return (
-              <Step key={index} heading={heading} index={index}/>
+              <Step key={index} 
+              heading={heading} 
+              index={index}
+              isActive={currentStep >= index}/>
             )
           })
         }
