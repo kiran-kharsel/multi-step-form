@@ -11,17 +11,17 @@ function Step1() {
       <form>
         <div className='input-group'>
           <label htmlFor="name">name</label>
-          <input type="text" id='name' />
+          <input required type="text" id='name' placeholder='e.g Stephen King' />
           <span className="error"></span>
         </div>
         <div className='input-group'>
           <label htmlFor="email">email</label>
-          <input type="email" id='email' />
+          <input required type="email" id='email' placeholder='e.g stephenking@email.com'/>
           <span className="error"></span>
         </div>
         <div className='input-group'>
           <label htmlFor="phone">phone number</label>
-          <input type="number" id='phone' />
+          <input required type="number" id='phone' placeholder='e.g +1234567890'/>
           <span className="error"></span>
         </div>
       </form>
