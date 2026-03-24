@@ -67,6 +67,10 @@ function FormWrapper() {
       console.log('confirm')
     }
   }
+
+  function handleGoBack(){
+
+  }
   
   return (
     <div className='form-wrapper'>
@@ -86,7 +90,9 @@ function FormWrapper() {
         </div>
 
         <div className="buttons">
-          <button className='go-back'>go back</button>
+          {
+            currentStep > Pages.step1 && <button onClick={handleGoBack} className='go-back'>go back</button>
+          }
           <button onClick={handleNextStep} className='next-step'>{submitBtnText}</button>
         </div>
       </main>
