@@ -1,0 +1,131 @@
+.select-plan{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.cards{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card{
+    width: 180px;
+    height: 200px;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover{
+    border-color: #0D1164;
+}
+
+.card h3{
+    text-transform: capitalize;
+}
+
+.card p{
+    color: gray;
+}
+
+.card span{
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+
+
+.subscription{
+    background-color: lightblue;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-transform: capitalize;
+    border-radius: 10px;
+}
+
+.subscription .tgl {
+  display: none;
+}
+.subscription .tgl,
+.subscription .tgl:after,
+.subscription .tgl:before,
+.subscription .tgl *,
+.subscription .tgl *:after,
+.subscription .tgl *:before,
+.subscription .tgl + .tgl-btn {
+  box-sizing: border-box;
+}
+.subscription .tgl::-moz-selection,
+.subscription .tgl:after::-moz-selection,
+.subscription .tgl:before::-moz-selection,
+.subscription .tgl *::-moz-selection,
+.subscription .tgl *:after::-moz-selection,
+.subscription .tgl *:before::-moz-selection,
+.subscription .tgl + .tgl-btn::-moz-selection,
+.subscription .tgl::selection,
+.subscription .tgl:after::selection,
+.subscription .tgl:before::selection,
+.subscription .tgl *::selection,
+.subscription .tgl *:after::selection,
+.subscription .tgl *:before::selection,
+.subscription .tgl + .tgl-btn::selection {
+  background: none;
+}
+.subscription .tgl + .tgl-btn {
+  outline: 0;
+  display: block;
+  width: 3em;
+  height: 1.5em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.subscription .tgl + .tgl-btn:after,
+.subscription .tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+.subscription .tgl + .tgl-btn:after {
+  left: 0;
+}
+.subscription .tgl + .tgl-btn:before {
+  display: none;
+}
+.subscription .tgl:checked + .tgl-btn:after {
+  left: 50%;
+}
+
+.subscription .tgl-light + .tgl-btn {
+  background: #0D1164;
+  border-radius: 2em;
+  padding: 2px;
+  transition: all 0.4s ease;
+}
+.subscription .tgl-light + .tgl-btn:after {
+  border-radius: 50%;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+.subscription .tgl-light:checked + .tgl-btn {
+  background: #0D1164;
+}
+

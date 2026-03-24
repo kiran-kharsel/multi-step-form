@@ -1,6 +1,11 @@
 import React from 'react'
 import './style.css'
 
+// icons
+import arcadeIcon from  '../../assets/icon-arcade.svg'
+import advancedIcon from  '../../assets/icon-advanced.svg'
+import proIcon from  '../../assets/icon-pro.svg'
+
 function Step2() {
   return (
     <div className='select-plan'>
@@ -11,25 +16,31 @@ function Step2() {
 
       <div className="cards">
         <div className="card">
-          <div className="icon"></div>
+          <div className="icon">
+            <img src={arcadeIcon} alt="" />
+          </div>
           <div className="card-details">
-            <h5>arcade</h5>
+            <h3>arcade</h3>
             <p>$90/yr</p>
             <span>2 months free</span>
           </div>
         </div>
         <div className="card">
-          <div className="icon"></div>
+          <div className="icon">
+            <img src={advancedIcon} alt="" />
+          </div>
           <div className="card-details">
-            <h5>advanced</h5>
+            <h3>advanced</h3>
             <p>$120/yr</p>
             <span>2 months free</span>
           </div>
         </div>
         <div className="card">
-          <div className="icon"></div>
+          <div className="icon">
+            <img src={proIcon} alt="" />
+          </div>
           <div className="card-details">
-            <h5>pro</h5>
+            <h3>pro</h3>
             <p>$150/yr</p>
             <span>2 months free</span>
           </div>
