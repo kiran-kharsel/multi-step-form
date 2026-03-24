@@ -3,7 +3,7 @@ import './style.css'
 
 function Step3() {
   return (
-    <div>Step</div>
+    <div>Step3</div>
   )
 }
 

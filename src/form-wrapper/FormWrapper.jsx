@@ -53,8 +53,20 @@ function FormWrapper() {
 
   const CurrentComponent = Steps[currentStep]
 
-  const submitBtnText = FINAL_STEP === currentStep ? 'confirm' : 'next step'
+  const submitBtnText = FINAL_STEP === currentStep ? 'confirm' : 'next step';
 
+
+  function handleNextStep(){
+    if(currentStep === Pages.step1){
+      setCurrentStep(currentStep + 1)
+    }else if(currentStep === Pages.step2){
+      setCurrentStep(currentStep + 1)
+    } else if(currentStep === Pages.step3){
+      setCurrentStep(currentStep + 1)
+    } else{
+      console.log('confirm')
+    }
+  }
   
   return (
     <div className='form-wrapper'>
@@ -75,7 +87,7 @@ function FormWrapper() {
 
         <div className="buttons">
           <button className='go-back'>go back</button>
-          <button className='next-step'>{submitBtnText}</button>
+          <button onClick={handleNextStep} className='next-step'>{submitBtnText}</button>
         </div>
       </main>
     </div>
