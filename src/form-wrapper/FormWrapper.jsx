@@ -69,7 +69,9 @@ function FormWrapper() {
   }
 
   function handleGoBack(){
-
+    if(currentStep > 1){
+      setCurrentStep(currentStep - 1)
+    }
   }
   
   return (
