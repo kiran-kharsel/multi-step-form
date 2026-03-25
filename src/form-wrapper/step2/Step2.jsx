@@ -6,6 +6,32 @@ import arcadeIcon from '../../assets/icon-arcade.svg'
 import advancedIcon from '../../assets/icon-advanced.svg'
 import proIcon from '../../assets/icon-pro.svg'
 
+
+// card data
+const CardData = [
+  {
+    id: 1,
+    title: 'arcade',
+    monthlyPrice: 9,
+    yearlyPrice: 90,
+    icon: arcadeIcon,
+  },
+  {
+    id: 2,
+    title: 'advanced',
+    monthlyPrice: 12,
+    yearlyPrice: 120,
+    icon: advancedIcon,
+  },
+  {
+    id: 3,
+    title: 'pro',
+    monthlyPrice: 15,
+    yearlyPrice: 150,
+    icon: proIcon,
+  },
+]
+
 function Step2() {
   const [checked, setChecked] = useState(false);
 
@@ -23,30 +49,21 @@ function Step2() {
       </div>
 
       <div className="cards">
-        <div className="cards">
-          <Card
-            icon={arcadeIcon}
-            title="Arcade"
-            monthlyPrice="$9/mo"
-            yearlyPrice="$90/yr"
-            checked={checked}
-          />
-          <Card
-            icon={advancedIcon}
-            title="Advanced"
-            monthlyPrice="$12/mo"
-            yearlyPrice="$120/yr"
-            checked={checked}
-          />
-          <Card
-            icon={proIcon}
-            title="Pro"
-            monthlyPrice="$15/mo"
-            yearlyPrice="$150/yr"
-            checked={checked}
-          />
-        </div>
-
+        {
+          CardData.map((data) => {
+            const { id, title, monthlyPrice, yearlyPrice, icon } = data
+            return (
+              <Card
+                key={id}
+                icon={icon}
+                title={title}
+                monthlyPrice={monthlyPrice}
+                yearlyPrice={yearlyPrice}
+                checked={checked}
+              />
+            )
+          })
+        }
       </div>
 
 
@@ -79,14 +96,16 @@ function Card({ icon, title, monthlyPrice, yearlyPrice, checked }) {
       </div>
       <div className="card-details">
         <h3>{title}</h3>
-        {checked ? (
-          <>
-            <p>{yearlyPrice}</p>
-            <span>2 months free</span>
-          </>
-        ) : (
-          <p>{monthlyPrice}</p>
-        )}
+        {
+          checked ? (
+            <>
+              <p>${yearlyPrice}/yr</p>
+              <span>2 months free</span>
+            </>
+          ) : (
+            <p>${monthlyPrice}/mo</p>
+          )
+        }
       </div>
     </div>
   );
