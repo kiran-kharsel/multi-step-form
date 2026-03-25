@@ -32,8 +32,11 @@ const CardData = [
   },
 ]
 
+const SELECTED_CARD_INDEX = 0;
+
 function Step2() {
   const [checked, setChecked] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(SELECTED_CARD_INDEX)
 
   const handleCheckboxChange = (event) => {
     setChecked(event.target.checked);
@@ -50,7 +53,7 @@ function Step2() {
 
       <div className="cards">
         {
-          CardData.map((data) => {
+          CardData.map((data, index) => {
             const { id, title, monthlyPrice, yearlyPrice, icon } = data
             return (
               <Card
@@ -60,6 +63,7 @@ function Step2() {
                 monthlyPrice={monthlyPrice}
                 yearlyPrice={yearlyPrice}
                 checked={checked}
+                isSelected = {selectedIndex === index}
               />
             )
           })
@@ -88,9 +92,11 @@ export default Step2
 
 
 // card component
-function Card({ icon, title, monthlyPrice, yearlyPrice, checked }) {
+function Card({ icon, title, monthlyPrice, yearlyPrice, checked, isSelected }) {
   return (
-    <div className="card">
+    <div 
+    style={{borderColor: isSelected ? 'mediumblue' : 'lightgray'}}
+    className="card">
       <div className="icon">
         <img src={icon} alt={title} />
       </div>
