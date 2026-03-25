@@ -42,6 +42,10 @@ function Step2() {
     setChecked(event.target.checked);
   };
 
+  function handlleSelectPlan(index){
+    setSelectedIndex(index)
+    console.log(CardData[index])
+  }
 
 
   return (
@@ -57,6 +61,7 @@ function Step2() {
             const { id, title, monthlyPrice, yearlyPrice, icon } = data
             return (
               <Card
+                index={index}
                 key={id}
                 icon={icon}
                 title={title}
@@ -64,6 +69,7 @@ function Step2() {
                 yearlyPrice={yearlyPrice}
                 checked={checked}
                 isSelected = {selectedIndex === index}
+                onSelectPlan = {handlleSelectPlan}
               />
             )
           })
@@ -92,10 +98,16 @@ export default Step2
 
 
 // card component
-function Card({ icon, title, monthlyPrice, yearlyPrice, checked, isSelected }) {
+function Card({ icon, index, title, monthlyPrice, yearlyPrice, checked, isSelected, onSelectPlan }) {
+  
+  function handleClick(){
+    onSelectPlan(index)
+  }
+  
   return (
     <div 
     style={{borderColor: isSelected ? 'mediumblue' : 'lightgray'}}
+    onClick={handleClick}
     className="card">
       <div className="icon">
         <img src={icon} alt={title} />
