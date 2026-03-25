@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import './style.css'
 
 // icons
-import arcadeIcon from  '../../assets/icon-arcade.svg'
-import advancedIcon from  '../../assets/icon-advanced.svg'
-import proIcon from  '../../assets/icon-pro.svg'
+import arcadeIcon from '../../assets/icon-arcade.svg'
+import advancedIcon from '../../assets/icon-advanced.svg'
+import proIcon from '../../assets/icon-pro.svg'
 
 function Step2() {
   const [checked, setChecked] = useState(false);
@@ -23,55 +23,71 @@ function Step2() {
       </div>
 
       <div className="cards">
-        <div className="card">
-          <div className="icon">
-            <img src={arcadeIcon} alt="" />
-          </div>
-          <div className="card-details">
-            <h3>arcade</h3>
-            {
-              checked ? <><p>$90/yr</p>
-            <span>2 months free</span></> : <>$9/mo</> 
-            }
-          </div>
+        <div className="cards">
+          <Card
+            icon={arcadeIcon}
+            title="Arcade"
+            monthlyPrice="$9/mo"
+            yearlyPrice="$90/yr"
+            checked={checked}
+          />
+          <Card
+            icon={advancedIcon}
+            title="Advanced"
+            monthlyPrice="$12/mo"
+            yearlyPrice="$120/yr"
+            checked={checked}
+          />
+          <Card
+            icon={proIcon}
+            title="Pro"
+            monthlyPrice="$15/mo"
+            yearlyPrice="$150/yr"
+            checked={checked}
+          />
         </div>
-        <div className="card">
-          <div className="icon">
-            <img src={advancedIcon} alt="" />
-          </div>
-          <div className="card-details">
-            <h3>advanced</h3>
-            <p>$120/yr</p>
-            <span>2 months free</span>
-          </div>
-        </div>
-        <div className="card">
-          <div className="icon">
-            <img src={proIcon} alt="" />
-          </div>
-          <div className="card-details">
-            <h3>pro</h3>
-            <p>$150/yr</p>
-            <span>2 months free</span>
-          </div>
-        </div>
+
       </div>
 
-      <div class="subscription">
-        <label 
-        style={{fontWeight: checked ? '' : '600'}}
-        htmlFor="subscription-toggle">monthly</label>
-        <input 
-        checked={checked}
-        onChange={handleCheckboxChange}
-        className="tgl tgl-light" id="subscription-toggle" type="checkbox" />
+
+      <div className="subscription">
+        <label
+          style={{ fontWeight: checked ? '' : '600' }}
+          htmlFor="subscription-toggle">monthly</label>
+        <input
+          checked={checked}
+          onChange={handleCheckboxChange}
+          className="tgl tgl-light" id="subscription-toggle" type="checkbox" />
         <label className="tgl-btn" htmlFor="subscription-toggle" />
-        <label 
-        style={{fontWeight: checked ? '600' : ''}}
-        htmlFor="subscription-toggle">yearly</label>
+        <label
+          style={{ fontWeight: checked ? '600' : '' }}
+          htmlFor="subscription-toggle">yearly</label>
       </div>
     </div>
   )
 }
 
 export default Step2
+
+
+// card component
+function Card({ icon, title, monthlyPrice, yearlyPrice, checked }) {
+  return (
+    <div className="card">
+      <div className="icon">
+        <img src={icon} alt={title} />
+      </div>
+      <div className="card-details">
+        <h3>{title}</h3>
+        {checked ? (
+          <>
+            <p>{yearlyPrice}</p>
+            <span>2 months free</span>
+          </>
+        ) : (
+          <p>{monthlyPrice}</p>
+        )}
+      </div>
+    </div>
+  );
+}
