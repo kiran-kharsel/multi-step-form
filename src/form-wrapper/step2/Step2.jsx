@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css'
 
 // icons
@@ -35,17 +35,26 @@ const CardData = [
 const SELECTED_CARD_INDEX = 0;
 
 function Step2() {
-  const [checked, setChecked] = useState(false);
+  const [isYearlyPlan, setIsYearlyPlan] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(SELECTED_CARD_INDEX)
+  
+  const plan = CardData[selectedIndex];
+  const selectedPlanData = isYearlyPlan
+  ? { id: plan.id, title: plan.title, price: plan.yearlyPrice, billing: "yearly", icon: plan.icon }
+  : { id: plan.id, title: plan.title, price: plan.monthlyPrice, billing: "monthly", icon: plan.icon };
 
   const handleCheckboxChange = (event) => {
-    setChecked(event.target.checked);
+    setIsYearlyPlan(event.target.checked);
   };
 
-  function handlleSelectPlan(index){
+  function handleSelectPlan(index){
     setSelectedIndex(index)
-    console.log(CardData[index])
   }
+
+  // Notify parent whenever selection changes
+  // useEffect(() => {
+  //   onPlanSelect(selectedPlanData);
+  // }, [isYearlyPlan, selectedIndex]);
 
 
   return (
@@ -54,6 +63,10 @@ function Step2() {
         <h1>Select your plan</h1>
         <p>You have the option of monthly or yearly billing</p>
       </div>
+
+      {
+        selectedPlanData.title
+      }
 
       <div className="cards">
         {
@@ -67,9 +80,9 @@ function Step2() {
                 title={title}
                 monthlyPrice={monthlyPrice}
                 yearlyPrice={yearlyPrice}
-                checked={checked}
+                checked={isYearlyPlan}
                 isSelected = {selectedIndex === index}
-                onSelectPlan = {handlleSelectPlan}
+                onSelectPlan = {handleSelectPlan}
               />
             )
           })
@@ -79,15 +92,15 @@ function Step2() {
 
       <div className="subscription">
         <label
-          style={{ fontWeight: checked ? '' : '600' }}
+          style={{ fontWeight: isYearlyPlan ? '' : '600' }}
           htmlFor="subscription-toggle">monthly</label>
         <input
-          checked={checked}
+          checked={isYearlyPlan}
           onChange={handleCheckboxChange}
           className="tgl tgl-light" id="subscription-toggle" type="checkbox" />
         <label className="tgl-btn" htmlFor="subscription-toggle" />
         <label
-          style={{ fontWeight: checked ? '600' : '' }}
+          style={{ fontWeight: isYearlyPlan ? '600' : '' }}
           htmlFor="subscription-toggle">yearly</label>
       </div>
     </div>
