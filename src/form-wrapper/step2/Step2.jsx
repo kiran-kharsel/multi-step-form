@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style.css'
 
 // icons
@@ -7,6 +7,14 @@ import advancedIcon from  '../../assets/icon-advanced.svg'
 import proIcon from  '../../assets/icon-pro.svg'
 
 function Step2() {
+  const [checked, setChecked] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
+
+
   return (
     <div className='select-plan'>
       <div className="select-plan-heading">
@@ -21,8 +29,10 @@ function Step2() {
           </div>
           <div className="card-details">
             <h3>arcade</h3>
-            <p>$90/yr</p>
-            <span>2 months free</span>
+            {
+              checked ? <><p>$90/yr</p>
+            <span>2 months free</span></> : <>$9/mo</> 
+            }
           </div>
         </div>
         <div className="card">
@@ -48,10 +58,17 @@ function Step2() {
       </div>
 
       <div class="subscription">
-        <label htmlFor="subscription-toggle">monthly</label>
-        <input class="tgl tgl-light" id="subscription-toggle" type="checkbox" />
-        <label class="tgl-btn" for="subscription-toggle" />
-        <label htmlFor="subscription-toggle">yearly</label>
+        <label 
+        style={{fontWeight: checked ? '' : '600'}}
+        htmlFor="subscription-toggle">monthly</label>
+        <input 
+        checked={checked}
+        onChange={handleCheckboxChange}
+        className="tgl tgl-light" id="subscription-toggle" type="checkbox" />
+        <label className="tgl-btn" htmlFor="subscription-toggle" />
+        <label 
+        style={{fontWeight: checked ? '600' : ''}}
+        htmlFor="subscription-toggle">yearly</label>
       </div>
     </div>
   )
