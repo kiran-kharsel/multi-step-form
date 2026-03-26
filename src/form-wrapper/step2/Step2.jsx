@@ -51,10 +51,6 @@ function Step2() {
     setSelectedIndex(index)
   }
 
-  // Notify parent whenever selection changes
-  // useEffect(() => {
-  //   onPlanSelect(selectedPlanData);
-  // }, [isYearlyPlan, selectedIndex]);
 
 
   return (

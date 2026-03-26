@@ -5,12 +5,12 @@ function Step3() {
   return (
     <div className='add-ons-container'>
       <div className="add-ons-heading">
-        <h1>Pick add-on</h1>
+        <h1>Pick add-ons</h1>
         <p>Add-ons help to enhance your gaming experince</p>
       </div>
       <div className="add-ons">
         <div className="add-on">
-          <input type="checkbox" />
+          <input type="checkbox" className='checkbox'/>
           <div>
             <h4>online service</h4>
             <p>Access to multiplayer games</p>
