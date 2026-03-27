@@ -50,7 +50,6 @@ function FormWrapper() {
     plan: {
       id: null,
       title: '',
-      desc: '',
       price: 0,
       billing: '',
     },

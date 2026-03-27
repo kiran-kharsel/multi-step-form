@@ -34,22 +34,41 @@ const CardData = [
 
 const SELECTED_CARD_INDEX = 0;
 
-function Step2() {
+function Step2({ formData, setFormData }) {
   const [isYearlyPlan, setIsYearlyPlan] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(SELECTED_CARD_INDEX)
-  
-  const plan = CardData[selectedIndex];
-  const selectedPlanData = isYearlyPlan
-  ? { id: plan.id, title: plan.title, price: plan.yearlyPrice, billing: "yearly", icon: plan.icon }
-  : { id: plan.id, title: plan.title, price: plan.monthlyPrice, billing: "monthly", icon: plan.icon };
+
+  // const plan = CardData[selectedIndex];
+  // const selectedPlanData = isYearlyPlan
+  //   ? { id: plan.id, title: plan.title, price: plan.yearlyPrice, billing: "yearly" }
+  //   : { id: plan.id, title: plan.title, price: plan.monthlyPrice, billing: "monthly" };
+
+
 
   const handleCheckboxChange = (event) => {
     setIsYearlyPlan(event.target.checked);
   };
 
-  function handleSelectPlan(index){
+  function handleSelectPlan(index) {
     setSelectedIndex(index)
   }
+
+  useEffect(() => {
+    const plan = CardData[selectedIndex];
+    const selectedPlanData = {
+      id: plan.id,
+      title: plan.title,
+      price: isYearlyPlan ? plan.yearlyPrice : plan.monthlyPrice,
+      billing: isYearlyPlan ? 'yearly' : 'monthly',
+    };
+
+
+    setFormData(prev => ({
+      ...prev,
+      plan: selectedPlanData
+    }));
+
+  }, [selectedIndex, isYearlyPlan]);
 
 
 
@@ -59,10 +78,6 @@ function Step2() {
         <h1>Select your plan</h1>
         <p>You have the option of monthly or yearly billing</p>
       </div>
-
-      {
-        selectedPlanData.title
-      }
 
       <div className="cards">
         {
@@ -77,8 +92,8 @@ function Step2() {
                 monthlyPrice={monthlyPrice}
                 yearlyPrice={yearlyPrice}
                 checked={isYearlyPlan}
-                isSelected = {selectedIndex === index}
-                onSelectPlan = {handleSelectPlan}
+                isSelected={selectedIndex === index}
+                onSelectPlan={handleSelectPlan}
               />
             )
           })
@@ -108,16 +123,16 @@ export default Step2
 
 // card component
 function Card({ icon, index, title, monthlyPrice, yearlyPrice, checked, isSelected, onSelectPlan }) {
-  
-  function handleClick(){
+
+  function handleClick() {
     onSelectPlan(index)
   }
-  
+
   return (
-    <div 
-    style={{borderColor: isSelected ? 'mediumblue' : 'lightgray'}}
-    onClick={handleClick}
-    className="card">
+    <div
+      style={{ borderColor: isSelected ? 'mediumblue' : 'lightgray' }}
+      onClick={handleClick}
+      className="card">
       <div className="icon">
         <img src={icon} alt={title} />
       </div>

@@ -3,9 +3,6 @@ import './style.css'
 
 function Step1({formData, setFormData}) {
 
-  console.log(formData)
-
-
   const updateField = (field, value) => {
     setFormData(prev =>({
       ...prev,
@@ -24,12 +21,14 @@ function Step1({formData, setFormData}) {
           <label htmlFor="name">name</label>
           <input 
           onChange={e =>  updateField("userName", e.target.value)}
+          value={formData.userName}
           required type="text" id='name' placeholder='e.g Stephen King' />
           <span className="error"></span>
         </div>
         <div className='input-group'>
           <label htmlFor="email">email</label>
           <input 
+          value={formData.email}
           onChange={e => updateField("email", e.target.value)}
           required type="email" id='email' placeholder='e.g stephenking@email.com'/>
           <span className="error"></span>
@@ -37,6 +36,7 @@ function Step1({formData, setFormData}) {
         <div className='input-group'>
           <label htmlFor="phone">phone number</label>
           <input 
+          value={formData.phone || ''}
           onChange={e => updateField("phone", e.target.value)}
           required type="number" id='phone' placeholder='e.g +1234567890'/>
           <span className="error"></span>
