@@ -77,6 +77,11 @@ function FormWrapper() {
 
 
   function handleNextStep(){
+    // return if no personal info
+    if(!formData.userName && !formData.email && !formData.phone) {
+      return
+    }
+    
     if(currentStep === Pages.step1){
       setCurrentStep(currentStep + 1)
     }else if(currentStep === Pages.step2){
@@ -113,7 +118,7 @@ function FormWrapper() {
       </aside>
       <main>
         <div className="current-step">
-          <CurrentComponent formData={formData}/>
+          <CurrentComponent formData={formData} setFormData={setFormData}/>
         </div>
 
         <div className="buttons">

@@ -1,8 +1,18 @@
 import React from 'react'
 import './style.css'
 
-function Step1({formData}) {
+function Step1({formData, setFormData}) {
+
   console.log(formData)
+
+
+  const updateField = (field, value) => {
+    setFormData(prev =>({
+      ...prev,
+      [field]: value,
+    }))
+  }
+
   return (
     <div className='info-step'>
       <div className='info-heading'>
@@ -12,17 +22,23 @@ function Step1({formData}) {
       <form>
         <div className='input-group'>
           <label htmlFor="name">name</label>
-          <input required type="text" id='name' placeholder='e.g Stephen King' />
+          <input 
+          onChange={e =>  updateField("userName", e.target.value)}
+          required type="text" id='name' placeholder='e.g Stephen King' />
           <span className="error"></span>
         </div>
         <div className='input-group'>
           <label htmlFor="email">email</label>
-          <input required type="email" id='email' placeholder='e.g stephenking@email.com'/>
+          <input 
+          onChange={e => updateField("email", e.target.value)}
+          required type="email" id='email' placeholder='e.g stephenking@email.com'/>
           <span className="error"></span>
         </div>
         <div className='input-group'>
           <label htmlFor="phone">phone number</label>
-          <input required type="number" id='phone' placeholder='e.g +1234567890'/>
+          <input 
+          onChange={e => updateField("phone", e.target.value)}
+          required type="number" id='phone' placeholder='e.g +1234567890'/>
           <span className="error"></span>
         </div>
       </form>
