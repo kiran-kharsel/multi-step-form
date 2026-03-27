@@ -25,10 +25,17 @@ const AddOnsData = [
 ]
 
 function Step3() {
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedIds, setSelectedIds] = useState([]);
 
   function handleClick(id) {
-    setSelectedId(id)
+    if (selectedIds.includes(id)) {
+      // deselect if clicked again
+      setSelectedIds(selectedIds.filter(item => item !== id));
+    } else {
+      // select new addon
+      setSelectedIds([...selectedIds, id]);
+    }
+
   }
 
   return (
@@ -43,7 +50,7 @@ function Step3() {
             return (
               <AddOn 
               key={data.id} 
-              checked={selectedId === data.id} 
+              checked={selectedIds.includes(data.id)} 
               data={data}
               onClick={handleClick}/>
             )
@@ -63,7 +70,6 @@ function AddOn({data, checked, onClick}) {
   const {id, title, desc, price} = data;
 
   function handleClick(){
-    console.log('ok')
     onClick(id)
   }
 
