@@ -1,7 +1,8 @@
 import React from 'react'
 import './style.css'
 
-function Step1() {
+function Step1({formData}) {
+  console.log(formData)
   return (
     <div className='info-step'>
       <div className='info-heading'>

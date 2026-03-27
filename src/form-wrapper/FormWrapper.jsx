@@ -42,7 +42,27 @@ const Pages = {
 const FINAL_STEP = Pages.step4
 
 function FormWrapper() {
+
+  const formDataObj = {
+    userName: '',
+    email: '',
+    phone: null,
+    plan: {
+      id: null,
+      title: '',
+      desc: '',
+      price: 0,
+      billing: '',
+    },
+    addOns: {
+      id: null,
+      title: '',
+      price: 0,
+    }
+  }
+
   const [currentStep, setCurrentStep] = useState(Pages.step1);
+  const [formData, setFormData] = useState(formDataObj);
 
   const Steps = {
     [Pages.step1]: Step1,
@@ -74,6 +94,7 @@ function FormWrapper() {
     }
   }
   
+  
   return (
     <div className='form-wrapper'>
       <aside>
@@ -81,7 +102,8 @@ function FormWrapper() {
           STEPS.map((step) => {
             const {index, heading} = step;
             return (
-              <Step key={index} 
+              <Step 
+              key={index} 
               heading={heading} 
               index={index}
               isActive={currentStep >= index}/>
@@ -91,7 +113,7 @@ function FormWrapper() {
       </aside>
       <main>
         <div className="current-step">
-          <CurrentComponent/>
+          <CurrentComponent formData={formData}/>
         </div>
 
         <div className="buttons">
