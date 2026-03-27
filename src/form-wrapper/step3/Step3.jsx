@@ -8,23 +8,26 @@ const AddOnsData = [
     id: 1,
     title: 'Online service',
     desc: 'Access to multiplayer games',
-    price: '',
+    monthlyPrice: 1,
+    yearlyPrice: 10,
   },
   {
     id: 2,
     title: 'Larger storage',
     desc: 'Extra 1TB cloud save',
-    price: '',
+    monthlyPrice: 2,
+    yearlyPrice: 20,
   },
   {
     id: 3,
     title: 'Customizable profile',
     desc: 'Custom theme on your profile',
-    price: '',
+    monthlyPrice: 2,
+    yearlyPrice: 20,
   },
 ]
 
-function Step3() {
+function Step3({ formData, setFormData }) {
   const [selectedIds, setSelectedIds] = useState([]);
 
   function handleClick(id) {
@@ -52,6 +55,7 @@ function Step3() {
               key={data.id} 
               checked={selectedIds.includes(data.id)} 
               data={data}
+              billing={formData.plan.billing}
               onClick={handleClick}/>
             )
           })
@@ -66,8 +70,8 @@ export default Step3;
 
 
 // addon component
-function AddOn({data, checked, onClick}) {
-  const {id, title, desc, price} = data;
+function AddOn({data, checked, onClick, billing}) {
+  const {id, title, desc, monthlyPrice, yearlyPrice} = data;
 
   function handleClick(){
     onClick(id)
@@ -82,7 +86,9 @@ function AddOn({data, checked, onClick}) {
         <h4>{title}</h4>
         <p>{desc}</p>
       </div>
-      <p className='price'>+${10}/yr</p>
+      <p className='price'>
+        {billing === 'yearly' ? `+$${yearlyPrice}/yr` : `+$${monthlyPrice}/mo`}
+      </p>
     </div>
   )
 }

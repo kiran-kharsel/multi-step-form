@@ -34,15 +34,9 @@ const CardData = [
 
 const SELECTED_CARD_INDEX = 0;
 
-function Step2({ formData, setFormData }) {
-  const [isYearlyPlan, setIsYearlyPlan] = useState(false);
+function Step2({formData, setFormData }) {
+  const [isYearlyPlan, setIsYearlyPlan] = useState(formData.plan.billing || false);
   const [selectedIndex, setSelectedIndex] = useState(SELECTED_CARD_INDEX)
-
-  // const plan = CardData[selectedIndex];
-  // const selectedPlanData = isYearlyPlan
-  //   ? { id: plan.id, title: plan.title, price: plan.yearlyPrice, billing: "yearly" }
-  //   : { id: plan.id, title: plan.title, price: plan.monthlyPrice, billing: "monthly" };
-
 
 
   const handleCheckboxChange = (event) => {
