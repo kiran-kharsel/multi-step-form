@@ -53,11 +53,7 @@ function FormWrapper() {
       price: 0,
       billing: '',
     },
-    addOns: {
-      id: null,
-      title: '',
-      price: 0,
-    }
+    addOns: []
   }
 
   const [currentStep, setCurrentStep] = useState(Pages.step1);

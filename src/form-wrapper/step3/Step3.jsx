@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css'
 
 
@@ -28,18 +28,26 @@ const AddOnsData = [
 ]
 
 function Step3({ formData, setFormData }) {
-  const [selectedIds, setSelectedIds] = useState([]);
 
-  function handleClick(id) {
-    if (selectedIds.includes(id)) {
-      // deselect if clicked again
-      setSelectedIds(selectedIds.filter(item => item !== id));
-    } else {
-      // select new addon
-      setSelectedIds([...selectedIds, id]);
-    }
+  const [selectedAddOns, setSelectedAddOns] = useState([]);
+
+  function handleClick(id, title, price) {
+
+    setSelectedAddOns(prev =>
+      prev.some(obj => obj.id === id)
+        ? prev.filter(obj => obj.id !== id)
+        : [...prev, { id, title, price }]
+    );
+
 
   }
+
+  useEffect(()=>{
+    setFormData(prev => ({
+      ...prev,
+      addOns: [...selectedAddOns]
+    }))
+  }, [selectedAddOns])
 
   return (
     <div className='add-ons-container'>
@@ -51,12 +59,12 @@ function Step3({ formData, setFormData }) {
         {
           AddOnsData.map((data) => {
             return (
-              <AddOn 
-              key={data.id} 
-              checked={selectedIds.includes(data.id)} 
-              data={data}
-              billing={formData.plan.billing}
-              onClick={handleClick}/>
+              <AddOn
+                key={data.id}
+                checked={selectedAddOns.some(obj => obj.id === data.id)}
+                data={data}
+                billing={formData.plan.billing}
+                onClick={handleClick} />
             )
           })
         }
@@ -70,11 +78,12 @@ export default Step3;
 
 
 // addon component
-function AddOn({data, checked, onClick, billing}) {
-  const {id, title, desc, monthlyPrice, yearlyPrice} = data;
+function AddOn({ data, checked, onClick, billing }) {
+  const { id, title, desc, monthlyPrice, yearlyPrice } = data;
+  const price = billing === 'yearly' ? `+$${yearlyPrice}/yr` : `+$${monthlyPrice}/mo`
 
-  function handleClick(){
-    onClick(id)
+  function handleClick() {
+    onClick(id, title, price)
   }
 
   return (
@@ -87,7 +96,7 @@ function AddOn({data, checked, onClick, billing}) {
         <p>{desc}</p>
       </div>
       <p className='price'>
-        {billing === 'yearly' ? `+$${yearlyPrice}/yr` : `+$${monthlyPrice}/mo`}
+        {price}
       </p>
     </div>
   )
