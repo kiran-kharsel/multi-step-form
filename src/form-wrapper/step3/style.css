@@ -33,7 +33,7 @@
     accent-color: mediumblue;
 }
 
-.add-on span{
+.add-on .price{
     position: absolute;
     right: 1rem;
     font-size: 1rem;
