@@ -19,17 +19,18 @@
   padding: 1rem 0px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid gray;
 }
 
 .summary-detail-addons {
   padding: 1rem 0px;
+  border-top: 1px solid gray;
 }
 
 .summary-detail-addons li {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 

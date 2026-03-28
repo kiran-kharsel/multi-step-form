@@ -77,7 +77,7 @@ export default Step3;
 // addon component
 function AddOn({ data, checked, onClick, billing }) {
   const { id, title, desc, monthlyPrice, yearlyPrice } = data;
-  const price = billing === 'yearly' ? `+$${yearlyPrice}/yr` : `+$${monthlyPrice}/mo`
+  const price = billing === 'yearly' ? yearlyPrice : monthlyPrice
 
   function handleClick() {
     onClick(id, title, price)
