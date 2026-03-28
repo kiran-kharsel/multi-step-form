@@ -93,7 +93,9 @@ function AddOn({ data, checked, onClick, billing }) {
         <p>{desc}</p>
       </div>
       <p className='price'>
+        +$
         {price}
+        /{billing === 'yearly' ? 'yr' : 'mo'}
       </p>
     </div>
   )
