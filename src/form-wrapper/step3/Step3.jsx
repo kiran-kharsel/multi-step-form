@@ -42,13 +42,6 @@ function Step3({ formData, setFormData }) {
 
   }
 
-  // useEffect(()=>{
-  //   setFormData(prev => ({
-  //     ...prev,
-  //     addOns: [...selectedAddOns]
-  //   }))
-  // }, [selectedAddOns])
-
   
 
   return (
