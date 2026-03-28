@@ -12,7 +12,7 @@ function Step4({formData, setFormData }) {
       </div>
       <div className="summary-detail">
         <div className="summary-detail-main">
-          <div className="title">Arcade (monthly) </div>
+          <h4 className="title">Arcade (monthly) </h4>
           <p className="price">$9/mo</p>
         </div>
         <ul className="summary-detail-addons">
@@ -21,12 +21,11 @@ function Step4({formData, setFormData }) {
             <p className="price">+$1/mo</p>
           </li>
         </ul>
-
-        <div className="summary-total">
+      </div>
+      <div className="summary-total">
           <div>total (per month)</div>
           <p className="price">$12/mo</p>
         </div>
-      </div>
     </div>
   )
 }
