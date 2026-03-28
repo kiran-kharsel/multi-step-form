@@ -29,25 +29,27 @@ const AddOnsData = [
 
 function Step3({ formData, setFormData }) {
 
-  const [selectedAddOns, setSelectedAddOns] = useState([]);
 
   function handleClick(id, title, price) {
+    const exists = formData.addOns.some(obj => obj.id === id);
 
-    setSelectedAddOns(prev =>
-      prev.some(obj => obj.id === id)
-        ? prev.filter(obj => obj.id !== id)
-        : [...prev, { id, title, price }]
-    );
-
+    setFormData(prev => ({
+      ...prev,
+      addOns: exists
+        ? prev.addOns.filter(obj => obj.id !== id) // remove if already selected
+        : [...prev.addOns, { id, title, price }]   // add new selection
+    }));
 
   }
 
-  useEffect(()=>{
-    setFormData(prev => ({
-      ...prev,
-      addOns: [...selectedAddOns]
-    }))
-  }, [selectedAddOns])
+  // useEffect(()=>{
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     addOns: [...selectedAddOns]
+  //   }))
+  // }, [selectedAddOns])
+
+  
 
   return (
     <div className='add-ons-container'>
@@ -55,13 +57,15 @@ function Step3({ formData, setFormData }) {
         <h1>Pick add-ons</h1>
         <p>Add-ons help to enhance your gaming experince</p>
       </div>
+
+
       <div className="add-ons">
         {
           AddOnsData.map((data) => {
             return (
               <AddOn
                 key={data.id}
-                checked={selectedAddOns.some(obj => obj.id === data.id)}
+                checked={formData.addOns.some(obj => obj.id === data.id)}
                 data={data}
                 billing={formData.plan.billing}
                 onClick={handleClick} />
