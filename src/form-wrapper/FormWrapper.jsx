@@ -22,7 +22,7 @@ const STEPS = [
   },
   {
     index : 3,
-    heading: 'adds-on',
+    heading: 'add-ons',
   },
   {
     index : 4,

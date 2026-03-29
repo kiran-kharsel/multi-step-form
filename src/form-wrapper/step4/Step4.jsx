@@ -3,13 +3,16 @@ import './style.css'
 
 function Step4({ formData, setFormData }) {
 
-  console.log(formData)
-
   const mainPrice = Number(formData.plan.price);
-  const addOnsPrice = formData.addOns.reduce((sum, item) => sum + item.price, 0)
+  const totalAddOnsPrice = formData.addOns.reduce((sum, addOn) => {
+    const price = formData.plan.billing === 'yearly' 
+    ? addOn.yearlyPrice 
+    : addOn.monthlyPrice;
 
-  console.log(mainPrice)
-  console.log(addOnsPrice)
+    return sum + price;
+
+  }, 0)
+
   return (
     <div className='summary'>
       <div className='summary-heading'>
@@ -34,7 +37,9 @@ function Step4({ formData, setFormData }) {
               return (
                 <li key={index} className="addOn">
                   <div className="title">{data.title}</div>
-                  <p className="price">${data.price}/{formData.plan.billing === 'monthly' ? 'mo' : 'yr'}</p>
+                  <p className="price">
+                    ${formData.plan.billing === 'monthly' ? data.monthlyPrice : data.yearlyPrice}/{formData.plan.billing === 'monthly' ? 'mo' : 'yr'}
+                  </p>
                 </li>
               )
             })
@@ -47,7 +52,7 @@ function Step4({ formData, setFormData }) {
           (per {formData.plan.billing === 'monthly' ? 'month' : 'year'})
           </div>
         <p className="price">
-          ${mainPrice + addOnsPrice}/{formData.plan.billing === 'monthly' ? 'mo' : 'yr'}
+          ${mainPrice + totalAddOnsPrice}/{formData.plan.billing === 'monthly' ? 'mo' : 'yr'}
         </p>
       </div>
     </div>

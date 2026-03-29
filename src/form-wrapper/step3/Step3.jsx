@@ -29,15 +29,14 @@ const AddOnsData = [
 
 function Step3({ formData, setFormData }) {
 
-
-  function handleClick(id, title, price) {
+  function handleClick(id, title, monthlyPrice, yearlyPrice) {
     const exists = formData.addOns.some(obj => obj.id === id);
 
     setFormData(prev => ({
       ...prev,
       addOns: exists
         ? prev.addOns.filter(obj => obj.id !== id) // remove if already selected
-        : [...prev.addOns, { id, title, price }]   // add new selection
+        : [...prev.addOns, { id, title, monthlyPrice, yearlyPrice }]   // add new selection
     }));
 
   }
@@ -50,7 +49,6 @@ function Step3({ formData, setFormData }) {
         <h1>Pick add-ons</h1>
         <p>Add-ons help to enhance your gaming experince</p>
       </div>
-
 
       <div className="add-ons">
         {
@@ -80,7 +78,7 @@ function AddOn({ data, checked, onClick, billing }) {
   const price = billing === 'yearly' ? yearlyPrice : monthlyPrice
 
   function handleClick() {
-    onClick(id, title, price)
+    onClick(id, title, monthlyPrice, yearlyPrice)
   }
 
   return (

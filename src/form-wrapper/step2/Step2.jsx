@@ -35,7 +35,8 @@ const CardData = [
 const SELECTED_CARD_INDEX = 0;
 
 function Step2({formData, setFormData }) {
-  const [isYearlyPlan, setIsYearlyPlan] = useState(formData.plan.billing || false);
+
+  const [isYearlyPlan, setIsYearlyPlan] = useState(formData.plan.billing === 'yearly' || false);
   const [selectedIndex, setSelectedIndex] = useState(SELECTED_CARD_INDEX)
 
 
