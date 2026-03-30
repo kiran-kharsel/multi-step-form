@@ -41,9 +41,8 @@ const Pages = {
 // final steps
 const FINAL_STEP = Pages.step4
 
-function FormWrapper() {
-
-  const formDataObj = {
+// formdata object
+const initialFormData = {
     userName: '',
     email: '',
     phone: null,
@@ -56,8 +55,11 @@ function FormWrapper() {
     addOns: []
   }
 
+function FormWrapper() {
+
+
   const [currentStep, setCurrentStep] = useState(Pages.step1);
-  const [formData, setFormData] = useState(formDataObj);
+  const [formData, setFormData] = useState(initialFormData);
 
   const Steps = {
     [Pages.step1]: Step1,
