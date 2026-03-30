@@ -13,19 +13,19 @@ import Step4 from './step4'
 // steps
 const STEPS = [
   {
-    index : 1,
+    index: 1,
     heading: 'your info',
   },
   {
-    index : 2,
+    index: 2,
     heading: 'select plan',
   },
   {
-    index : 3,
+    index: 3,
     heading: 'add-ons',
   },
   {
-    index : 4,
+    index: 4,
     heading: 'summary',
   },
 ]
@@ -71,49 +71,46 @@ function FormWrapper() {
   const submitBtnText = FINAL_STEP === currentStep ? 'Confirm' : 'Next Step';
 
 
-  function handleNextStep(){
+  function handleNextStep() {
     // return if no personal info
-    if(!formData.userName && !formData.email && !formData.phone) {
+    if (!formData.userName && !formData.email && !formData.phone) {
       return
     }
-    
-    if(currentStep === Pages.step1){
-      setCurrentStep(currentStep + 1)
-    }else if(currentStep === Pages.step2){
-      setCurrentStep(currentStep + 1)
-    } else if(currentStep === Pages.step3){
-      setCurrentStep(currentStep + 1)
-    } else{
-      console.log('confirm')
+
+    if (currentStep < FINAL_STEP) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      console.log('confirm');
     }
+
   }
 
-  function handleGoBack(){
-    if(currentStep > 1){
+  function handleGoBack() {
+    if (currentStep > 1) {
       setCurrentStep(currentStep - 1)
     }
   }
-  
-  
+
+
   return (
     <div className='form-wrapper'>
       <aside>
         {
           STEPS.map((step) => {
-            const {index, heading} = step;
+            const { index, heading } = step;
             return (
-              <Step 
-              key={index} 
-              heading={heading} 
-              index={index}
-              isActive={currentStep >= index}/>
+              <Step
+                key={index}
+                heading={heading}
+                index={index}
+                isActive={currentStep >= index} />
             )
           })
         }
       </aside>
       <main>
         <div className="current-step">
-          <CurrentComponent formData={formData} setFormData={setFormData}/>
+          <CurrentComponent formData={formData} setFormData={setFormData} />
         </div>
 
         <div className="buttons">
