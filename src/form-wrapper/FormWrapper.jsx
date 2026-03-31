@@ -43,23 +43,24 @@ const FINAL_STEP = Pages.step4
 
 // formdata object
 const initialFormData = {
-    userName: '',
-    email: '',
-    phone: null,
-    plan: {
-      id: null,
-      title: '',
-      price: 0,
-      billing: '',
-    },
-    addOns: []
-  }
+  userName: '',
+  email: '',
+  phone: null,
+  plan: {
+    id: null,
+    title: '',
+    price: 0,
+    billing: '',
+  },
+  addOns: []
+}
 
 function FormWrapper() {
 
 
   const [currentStep, setCurrentStep] = useState(Pages.step1);
   const [formData, setFormData] = useState(initialFormData);
+  const [isSubmitConfirm, setIsSubmitConfirm] = useState(false);
 
   const Steps = {
     [Pages.step1]: Step1,
@@ -82,7 +83,7 @@ function FormWrapper() {
     if (currentStep < FINAL_STEP) {
       setCurrentStep(currentStep + 1);
     } else {
-      console.log('confirm');
+      setIsSubmitConfirm(true)
     }
 
   }
@@ -112,15 +113,25 @@ function FormWrapper() {
       </aside>
       <main>
         <div className="current-step">
-          <CurrentComponent formData={formData} setFormData={setFormData} />
+          {
+            isSubmitConfirm
+              ? 'succesful'
+              : <CurrentComponent formData={formData} setFormData={setFormData} />
+          }
         </div>
 
-        <div className="buttons">
-          {
-            currentStep > Pages.step1 && <button onClick={handleGoBack} className='go-back'>go back</button>
-          }
-          <button onClick={handleNextStep} className='next-step'>{submitBtnText}</button>
-        </div>
+        {
+          !isSubmitConfirm &&
+          (
+            <div className="buttons">
+              {
+                currentStep > Pages.step1 && <button onClick={handleGoBack} className='go-back'>go back</button>
+              }
+
+              <button onClick={handleNextStep} className='next-step'>{submitBtnText}</button>
+            </div>
+          )
+        }
       </main>
     </div>
   )
