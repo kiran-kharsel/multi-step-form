@@ -29,14 +29,14 @@ const AddOnsData = [
 
 function Step3({ formData, setFormData }) {
 
-  function handleClick(id, title, monthlyPrice, yearlyPrice) {
+  function handleClick(addOn) {
     const exists = formData.addOns.some(obj => obj.id === id);
 
     setFormData(prev => ({
       ...prev,
       addOns: exists
-        ? prev.addOns.filter(obj => obj.id !== id) // remove if already selected
-        : [...prev.addOns, { id, title, monthlyPrice, yearlyPrice }]   // add new selection
+        ? prev.addOns.filter(obj => obj.id !== addOn.id) // remove if already selected
+        : [...prev.addOns, addOn]   // add new selection
     }));
 
   }
@@ -78,7 +78,7 @@ function AddOn({ data, checked, onClick, billing }) {
   const price = billing === 'yearly' ? yearlyPrice : monthlyPrice
 
   function handleClick() {
-    onClick(id, title, monthlyPrice, yearlyPrice)
+    onClick(data)
   }
 
   return (
