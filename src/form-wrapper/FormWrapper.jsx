@@ -8,6 +8,7 @@ import Step1 from './step1'
 import Step2 from './step2'
 import Step3 from './step3'
 import Step4 from './step4'
+import SuccessMsg from './success'
 
 
 // steps
@@ -115,7 +116,7 @@ function FormWrapper() {
         <div className="current-step">
           {
             isSubmitConfirm
-              ? 'succesful'
+              ? <SuccessMsg/>
               : <CurrentComponent formData={formData} setFormData={setFormData} />
           }
         </div>
@@ -137,4 +138,6 @@ function FormWrapper() {
   )
 }
 
-export default FormWrapper
+export default FormWrapper;
+
+
