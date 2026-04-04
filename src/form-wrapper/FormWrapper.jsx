@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import './style.css'
-import Step from './step'
+
+import { FormProvider } from '../context/FormContext'
+
 
 // import all step components
-// todo:: lazy load in other file
+import Step from './step'
 import Step1 from './step1'
 import Step2 from './step2'
 import Step3 from './step3'
@@ -97,44 +99,46 @@ function FormWrapper() {
 
 
   return (
-    <div className='form-wrapper'>
-      <aside>
-        {
-          STEPS.map((step) => {
-            const { index, heading } = step;
-            return (
-              <Step
-                key={index}
-                heading={heading}
-                index={index}
-                isActive={currentStep >= index} />
-            )
-          })
-        }
-      </aside>
-      <main>
-        <div className="current-step">
+    <FormProvider>
+      <div className='form-wrapper'>
+        <aside>
           {
-            isSubmitConfirm
-              ? <SuccessMsg/>
-              : <CurrentComponent formData={formData} setFormData={setFormData} />
+            STEPS.map((step) => {
+              const { index, heading } = step;
+              return (
+                <Step
+                  key={index}
+                  heading={heading}
+                  index={index}
+                  isActive={currentStep >= index} />
+              )
+            })
           }
-        </div>
+        </aside>
+        <main>
+          <div className="current-step">
+            {
+              isSubmitConfirm
+                ? <SuccessMsg />
+                : <CurrentComponent formData={formData} setFormData={setFormData} />
+            }
+          </div>
 
-        {
-          !isSubmitConfirm &&
-          (
-            <div className="buttons">
-              {
-                currentStep > Pages.step1 && <button onClick={handleGoBack} className='go-back'>go back</button>
-              }
+          {
+            !isSubmitConfirm &&
+            (
+              <div className="buttons">
+                {
+                  currentStep > Pages.step1 && <button onClick={handleGoBack} className='go-back'>go back</button>
+                }
 
-              <button onClick={handleNextStep} className='next-step'>{submitBtnText}</button>
-            </div>
-          )
-        }
-      </main>
-    </div>
+                <button onClick={handleNextStep} className='next-step'>{submitBtnText}</button>
+              </div>
+            )
+          }
+        </main>
+      </div>
+    </FormProvider>
   )
 }
 
