@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
 
+import { useForm } from '../../context/FormContext';
+
 // icons
 import arcadeIcon from '../../assets/icon-arcade.svg'
 import advancedIcon from '../../assets/icon-advanced.svg'
@@ -34,7 +36,9 @@ const CardData = [
 
 const SELECTED_CARD_INDEX = 0;
 
-function Step2({formData, setFormData }) {
+function Step2() {
+
+  const {formData, dispatch} = useForm();
 
   const [isYearlyPlan, setIsYearlyPlan] = useState(formData.plan.billing === 'yearly');
   const [selectedIndex, setSelectedIndex] = useState(SELECTED_CARD_INDEX)
@@ -58,10 +62,12 @@ function Step2({formData, setFormData }) {
     };
 
 
-    setFormData(prev => ({
-      ...prev,
-      plan: selectedPlanData
-    }));
+    // setFormData(prev => ({
+    //   ...prev,
+    //   plan: selectedPlanData
+    // }));
+
+    dispatch({type: 'UPDATE_PLAN', plan: selectedPlanData})
 
   }, [selectedIndex, isYearlyPlan]);
 
