@@ -33,17 +33,7 @@ function Step3() {
   const {formData, dispatch} = useForm();
 
   function handleClick(addOn) {
-    // const exists = formData.addOns.some(obj => obj.id === id);
-
-    // setFormData(prev => ({
-    //   ...prev,
-    //   addOns: exists
-    //     ? prev.addOns.filter(obj => obj.id !== addOn.id) // remove if already selected
-    //     : [...prev.addOns, addOn]   // add new selection
-    // }));
-
     dispatch({type: 'TOGGLE_ADDON', addOn})
-
   }
 
   

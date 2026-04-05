@@ -1,9 +1,14 @@
 import React from 'react'
 import './style.css'
 
-function Step4({ formData, setFormData }) {
+import { useForm } from '../../context/FormContext';
+
+function Step4() {
+
+  const {formData, dispatch} = useForm();
 
   const mainPrice = Number(formData.plan.price);
+  
   const totalAddOnsPrice = formData.addOns.reduce((sum, addOn) => {
     const price = formData.plan.billing === 'yearly' 
     ? addOn.yearlyPrice 

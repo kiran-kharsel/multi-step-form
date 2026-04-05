@@ -61,12 +61,6 @@ function Step2() {
       billing: isYearlyPlan ? 'yearly' : 'monthly',
     };
 
-
-    // setFormData(prev => ({
-    //   ...prev,
-    //   plan: selectedPlanData
-    // }));
-
     dispatch({type: 'UPDATE_PLAN', plan: selectedPlanData})
 
   }, [selectedIndex, isYearlyPlan]);
