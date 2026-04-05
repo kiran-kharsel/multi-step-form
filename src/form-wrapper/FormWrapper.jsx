@@ -18,63 +18,36 @@ const STEPS = [
   {
     index: 1,
     heading: 'your info',
+    component: Step1,
   },
   {
     index: 2,
     heading: 'select plan',
+    component: Step2,
   },
   {
     index: 3,
     heading: 'add-ons',
+    component: Step3,
   },
   {
     index: 4,
     heading: 'summary',
+    component: Step4,
   },
 ]
 
-// pages 
-const Pages = {
-  step1: 1,
-  step2: 2,
-  step3: 3,
-  step4: 4,
-}
 
-// final steps
-const FINAL_STEP = Pages.step4
-
-// formdata object
-const initialFormData = {
-  userName: '',
-  email: '',
-  phone: null,
-  plan: {
-    id: null,
-    title: '',
-    price: 0,
-    billing: '',
-  },
-  addOns: []
-}
+// current step
+const CURRENT_STEP = 1
 
 function FormWrapper() {
+  const [currentStep, setCurrentStep] = useState(CURRENT_STEP);
+  // const [formData, setFormData] = useState(initialFormData);
+  // const [isSubmitConfirm, setIsSubmitConfirm] = useState(false);
 
-
-  const [currentStep, setCurrentStep] = useState(Pages.step1);
-  const [formData, setFormData] = useState(initialFormData);
-  const [isSubmitConfirm, setIsSubmitConfirm] = useState(false);
-
-  const Steps = {
-    [Pages.step1]: Step1,
-    [Pages.step2]: Step2,
-    [Pages.step3]: Step3,
-    [Pages.step4]: Step4,
-  }
-
-  const CurrentComponent = Steps[currentStep]
-
-  const submitBtnText = FINAL_STEP === currentStep ? 'Confirm' : 'Next Step';
+  const CurrentComponent = STEPS.find(s => s.index === currentStep).component;
+  const isFinalStep = currentStep === STEPS.length;
 
 
   function handleNextStep() {
@@ -132,7 +105,9 @@ function FormWrapper() {
                   currentStep > Pages.step1 && <button onClick={handleGoBack} className='go-back'>go back</button>
                 }
 
-                <button onClick={handleNextStep} className='next-step'>{submitBtnText}</button>
+                <button onClick={handleNextStep} className='next-step'>
+                  {isFinalStep ? 'Confirm' : 'Next Step'}
+                </button>
               </div>
             )
           }
