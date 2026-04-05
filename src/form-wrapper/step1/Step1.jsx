@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
 import './style.css'
 
-function Step1({formData, setFormData}) {
+import { useForm } from '../../context/FormContext';
+
+function Step1() {
+
+  const {formData, dispatch} = useForm();
 
   const [error, setError] = useState({})
 
   const updateField = (field, value) => {
-    setFormData(prev =>({
-      ...prev,
-      [field]: value,
-    }))
+    dispatch({type: 'UPDATE_FIELD', field, value})
   }
 
   function handleBlur(e){
     const {name, value} = e.target;
     let errorMsg = '';
-
-    console.log('on-blur --', name)
 
     if(name === 'userName'){
       if(value.trim().length < 3){
