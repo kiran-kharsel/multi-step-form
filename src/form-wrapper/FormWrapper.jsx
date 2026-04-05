@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './style.css'
 
-import { FormProvider } from '../context/FormContext'
+
+import { useForm } from '../context/FormContext';
 
 
 // import all step components
@@ -42,8 +43,9 @@ const STEPS = [
 const CURRENT_STEP = 1
 
 function FormWrapper() {
+  const {dispatch} = useForm();
+
   const [currentStep, setCurrentStep] = useState(CURRENT_STEP);
-  // const [formData, setFormData] = useState(initialFormData);
   const [isSubmitConfirm, setIsSubmitConfirm] = useState(false);
 
   const CurrentComponent = STEPS.find(s => s.index === currentStep).component;
@@ -60,6 +62,8 @@ function FormWrapper() {
       setCurrentStep(currentStep + 1);
     } else {
       setIsSubmitConfirm(true)
+      //reset formdata
+      dispatch({type: 'RESET'})
     }
 
   }
@@ -72,7 +76,6 @@ function FormWrapper() {
 
 
   return (
-    <FormProvider>
       <div className='form-wrapper'>
         <aside>
           {
@@ -113,7 +116,6 @@ function FormWrapper() {
           }
         </main>
       </div>
-    </FormProvider>
   )
 }
 
